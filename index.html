@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Charles — Graphic Designer (Web & Digital)</title>
+  <meta name="description" content="Portfolio of Charles — Graphic Designer specializing in web, UI and digital branding. Case studies, process, and contact." />
+
+  <!-- Modern font pairing: Manrope (clean, geometric UI) + Playfair Display (elegant headings) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root{
+      --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+      --gd-1: linear-gradient(135deg,#051428 0%,#0b7285 45%,#6ee7d4 100%);
+      --card-bg: rgba(255,255,255,0.03);
+      --muted: rgba(255,255,255,0.88);
+    }
+
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-weight: 400;
+      color: #07121a;
+      background: #fff;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+    }
+
+    h1, h2, h3, h4, h5 {
+      margin: 0;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: #06121a;
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: 2.25rem; line-height: 1.02; }
+    h2 { font-size: 1.25rem; }
+    h3 { font-size: 1.05rem; }
+
+    p, a, li { font-size: 1rem; color: #334155; }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-decoration: none;
+      color: #06121a;
+      letter-spacing: 0.01em;
+    }
+
+    /* Hero */
+    .hero{ padding:4rem 0; background:var(--gd-1); color:var(--muted); border-radius:0 0 28px 28px; box-shadow: 0 8px 40px rgba(2,6,23,0.08); }
+    .hero-inner{ display:flex; gap:2rem; align-items:center; max-width:1100px; margin:0 auto; padding:0 1rem; }
+    .hero-text{ flex:1; }
+    .hero h1{ margin:0; font-size:3rem; color:#ffffff; }
+    .hero h1 span{ color:rgba(255,255,255,0.95); display:block; font-size:1rem; font-weight:600; margin-top:.5rem; font-family:var(--font-sans); }
+    .hero p.lead{ margin:0.75rem 0 1.25rem; color:rgba(255,255,255,0.92); font-weight:500; font-size:1.05rem; }
+
+    /* Featured image styles — tailored for portrait photos */
+    .hero-fig {
+      width:360px;
+      display:block;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(2,6,23,0.18);
+      border:8px solid rgba(255,255,255,0.10);
+      background:#fff;
+    }
+    .hero-fig img {
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;             /* fill the frame while preserving aspect */
+      object-position:center 14%;   /* nudge cropping up a bit to prioritize head/shoulders */
+      transform-origin:center center;
+      transition:transform .35s ease;
+      will-change:transform;
+    }
+    .hero-fig:hover img { transform: scale(1.03); }
+
+    .btn.primary{ background:rgba(255,255,255,0.96); color:#042028; padding:.7rem 1rem; border-radius:10px; text-decoration:none; font-weight:700; font-family:var(--font-sans); }
+    .btn.ghost{ background:transparent; color:rgba(255,255,255,0.95); border:1px solid rgba(255,255,255,0.18); padding:.6rem .9rem; border-radius:10px; text-decoration:none; font-weight:600; font-family:var(--font-sans); }
+
+    .project-title { font-family: var(--font-heading); font-weight:600; font-size:1.05rem; }
+    .project-meta { font-family: var(--font-sans); font-weight:600; font-size:.92rem; color: rgba(255,255,255,0.9); }
+
+    .muted { color: #64748b; font-family: var(--font-sans); }
+    a { color: inherit; }
+
+    @media (max-width:900px){
+      .hero-inner{ flex-direction:column-reverse; text-align:center; padding-bottom:2rem; }
+      .hero h1{ font-size:2.2rem; }
+      .hero-fig { width:280px; }
+    }
+    @media (max-width:520px){
+      .hero h1{ font-size:1.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-inner" style="display:flex;align-items:center;justify-content:space-between;">
+      <a class="logo" href="#">Charles</a>
+      <nav id="primary-nav" class="nav" role="navigation" aria-label="Primary">
+        <ul style="display:flex;gap:1rem;align-items:center;margin:0;padding:0;list-style:none;">
+          <li><a href="#about" style="text-decoration:none;color:rgba(0,0,0,0.65);font-weight:600;">About</a></li>
+          <li><a href="#work" style="text-decoration:none;color:rgba(0,0,0,0.65);font-weight:600;">Work</a></li>
+          <li><a href="#process" style="text-decoration:none;color:rgba(0,0,0,0.65);font-weight:600;">Process</a></li>
+          <li><a href="#contact" style="text-decoration:none;color:rgba(0,0,0,0.65);font-weight:600;">Contact</a></li>
+          <li><a class="btn" href="Charles_CV.pdf" target="_blank" rel="noopener" style="padding:.5rem .75rem;border-radius:8px;background:#06121a;color:#fff;text-decoration:none;font-weight:600;">Resume</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <h1 id="hero-title">Charles<span>Graphic Designer — Web & Digital</span></h1>
+          <p class="lead">I craft brand-driven digital experiences for web and product. I combine strategy, UI, and motion to create clear visual systems that scale.</p>
+          <p class="hero-ctas" style="display:flex;gap:0.75rem;margin-top:1rem;">
+            <a class="btn primary" href="#work">View Work</a>
+            <a class="btn ghost" href="#contact">Let's Collaborate</a>
+          </p>
+          <ul style="display:flex;gap:.75rem;margin-top:1.25rem;list-style:none;padding:0;">
+            <li style="background:rgba(255,255,255,0.12);padding:.4rem .6rem;border-radius:999px;font-weight:700;color:var(--muted);font-family:var(--font-sans);">Branding</li>
+            <li style="background:rgba(255,255,255,0.12);padding:.4rem .6rem;border-radius:999px;font-weight:700;color:var(--muted);font-family:var(--font-sans);">UI/UX</li>
+            <li style="background:rgba(255,255,255,0.12);padding:.4rem .6rem;border-radius:999px;font-weight:700;color:var(--muted);font-family:var(--font-sans);">Motion</li>
+          </ul>
+        </div>
+
+        <figure class="hero-fig" aria-hidden="false" role="img" aria-label="Featured design sample">
+          <!-- Place the attached image at this path in your repo: assets/featured-sample.jpg -->
+          <img src="assets/featured-sample.jpg" alt="Featured design sample — portrait photograph" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- rest of the page unchanged -->
+    <section id="about" class="container about" aria-labelledby="about-title">
+      <div class="section-head" style="max-width:1100px;margin:2.25rem auto 1rem;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+        <h2 id="about-title">About</h2>
+        <div class="muted" style="font-weight:600;">Available for freelance & full-time</div>
+      </div>
+      <div class="skills" style="max-width:1100px;margin:0 auto;padding:0 1rem 2rem;color:#334155;">
+        <p style="margin:0 0 .75rem 0;">
+          I'm Charles — a visual designer focused on web interfaces, digital branding and product experiences. I like to start with purpose, refine with research, and deliver polished visuals with well-considered motion and interaction.
+        </p>
+        <p style="margin:0;color:#475569;">
+          Tools: Figma, Adobe Illustrator, After Effects, Webflow, HTML/CSS. I collaborate with product teams to bring consistent, beautiful digital experiences to market.
+        </p>
+      </div>
+    </section>
+
+    <!-- projects, process, contact, footer (unchanged) -->
+    <!-- ... -->
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container" style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+      <p style="margin:0;color:#64748b;font-family:var(--font-sans);">© <span id="year"></span> Charles — Graphic Designer</p>
+      <p style="margin:0;color:#94a3b8;font-size:.9rem;font-family:var(--font-sans);">Built with a love for clarity & craft.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
