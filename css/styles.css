@@ -20,6 +20,8 @@
       --bg-secondary: #f8fafc;
       --bg-tertiary: #e2e8f0;
       --border: #e2e8f0;
+      --surface: #ffffff;
+      --bg-header: rgba(255, 255, 255, 0.95);
       
       --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
       --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -1px rgba(15, 23, 42, 0.06);
@@ -29,6 +31,25 @@
       --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
       --gradient-tertiary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    /* ── Theme overrides ─────────────────────────────────────────────────── */
+
+    /* Dark mode tokens — applied by JS when user picks Dark or Auto+system-dark */
+    html[data-theme="dark"] {
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-light: #94a3b8;
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-tertiary: #334155;
+      --border: #334155;
+      --surface: #1e293b;
+      --bg-header: rgba(15, 23, 42, 0.95);
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
     }
 
     html {
@@ -73,7 +94,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--bg-header);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
       padding: 1rem 0;
@@ -354,7 +375,7 @@
 
     .skill-item {
       padding: 1.5rem;
-      background: white;
+      background: var(--surface);
       border-radius: 0.75rem;
       box-shadow: var(--shadow-sm);
       transition: all 0.3s ease;
@@ -389,7 +410,7 @@
     }
 
     .project-card {
-      background: white;
+      background: var(--surface);
       border-radius: 1rem;
       overflow: hidden;
       box-shadow: var(--shadow-md);
@@ -499,7 +520,7 @@
     }
 
     .step {
-      background: white;
+      background: var(--surface);
       padding: 2rem;
       border-radius: 1rem;
       box-shadow: var(--shadow-sm);
@@ -581,6 +602,48 @@
       gap: 1rem;
       max-width: 1200px;
       margin: 0 auto;
+    }
+
+    /* ── Theme Toggle ─────────────────────────────────────────────────────── */
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.15rem;
+      background: var(--bg-tertiary);
+      border-radius: 0.5rem;
+      padding: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 0.35rem;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+      padding: 0;
+    }
+
+    .theme-btn:hover {
+      color: var(--text-primary);
+      background: var(--surface);
+    }
+
+    .theme-btn[aria-pressed="true"] {
+      background: var(--surface);
+      color: var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .theme-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
     }
 
     /* Responsive Design */
