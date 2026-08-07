@@ -61,23 +61,6 @@
     </nav>
   </header>
 
-  <!-- SIDE PAGINATION NAV (DESKTOP) -->
-  <nav id="site-nav" aria-label="Main navigation.">
-    <ul>
-      <li><button type="button" class="nav-bullet-btn current" data-target="une"
-          aria-label="Go to first section. Hero."></button></li>
-      <li><button type="button" class="nav-bullet-btn" data-target="deux"
-          aria-label="Go to second section. Skills."></button></li>
-      <li><button type="button" class="nav-bullet-btn" data-target="trois"
-          aria-label="Go to third section. Experience."></button></li>
-      <li><button type="button" class="nav-bullet-btn" data-target="quatre"
-          aria-label="Go to fourth section. Process."></button></li>
-      <li><button type="button" class="nav-bullet-btn" data-target="work"
-          aria-label="Go to fifth section. Projects."></button></li>
-      <li><button type="button" class="nav-bullet-btn" data-target="cinq"
-          aria-label="Go to sixth section. Download CV."></button></li>
-    </ul>
-  </nav>
 
   <!-- MAIN SCROLL CONTAINER -->
   <main id="main">
@@ -339,21 +322,7 @@
           </span>
         </a>
 
-        <a href="https://brett-freer.vercel.app/" target="_blank" rel="noopener" class="project-card">
-          <span class="project-cat">Web Design</span>
-          <h3>Brett Freer — Real Estate Broker</h3>
-          <p>Placer County real estate broker portal with property search filters, custom mortgage calculator, and
-            booking system.</p>
-          <div class="project-tags">
-            <span>Real Estate</span><span>Web</span><span>Interactive</span>
-          </div>
-          <span class="project-link">
-            View Live
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </span>
-        </a>
+
       </div>
     </section>
 
@@ -462,7 +431,6 @@
     const mainContainer = document.querySelector('main');
     const siteHeader = document.getElementById('site-header');
     const sections = document.querySelectorAll('section, footer');
-    const navButtons = document.querySelectorAll('.nav-bullet-btn');
 
     function handleScroll() {
       // Compact header
@@ -489,15 +457,6 @@
 
       if (currentSection) {
         document.body.setAttribute('data-current-section', currentSection);
-
-        // Update nav buttons
-        navButtons.forEach(btn => {
-          if (btn.getAttribute('data-target') === currentSection) {
-            btn.classList.add('current');
-          } else {
-            btn.classList.remove('current');
-          }
-        });
       }
     }
 
@@ -505,17 +464,113 @@
     mainContainer.addEventListener('scroll', handleScroll);
     window.addEventListener('scroll', handleScroll);
 
-    // Nav bullets click handler
-    navButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-target');
-        const targetNode = document.querySelector(`[data-section="${targetId}"]`);
-        if (targetNode) {
-          targetNode.scrollIntoView({ behavior: 'smooth' });
+    // WhatsApp Widget Toggle and Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      const waChatLauncher = document.getElementById('wa-chat-launcher');
+      const waChatWindow = document.getElementById('wa-chat-window');
+      const waChatClose = document.getElementById('wa-chat-close');
+      const waChatTime = document.getElementById('wa-chat-time');
+
+      // Set dynamic current time for chat bubble
+      if (waChatTime) {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        waChatTime.textContent = `${hours}:${minutes} ${ampm}`;
+      }
+
+      // Toggle Chat Window
+      function toggleWaChat() {
+        const isOpen = waChatWindow.classList.toggle('open');
+        waChatLauncher.classList.toggle('active', isOpen);
+        waChatLauncher.setAttribute('aria-expanded', isOpen);
+        
+        // Remove badge when opened
+        if (isOpen) {
+          const badge = waChatLauncher.querySelector('.wa-launcher-badge');
+          if (badge) {
+            badge.classList.remove('visible');
+          }
         }
-      });
+      }
+
+      if (waChatLauncher && waChatClose) {
+        waChatLauncher.addEventListener('click', toggleWaChat);
+        waChatClose.addEventListener('click', toggleWaChat);
+
+        // Show launcher badge notification and trigger a subtle bounce animation after 4 seconds
+        setTimeout(() => {
+          if (!waChatWindow.classList.contains('open')) {
+            const badge = waChatLauncher.querySelector('.wa-launcher-badge');
+            if (badge) {
+              badge.classList.add('visible');
+            }
+            waChatLauncher.classList.add('bounce');
+            setTimeout(() => waChatLauncher.classList.remove('bounce'), 1000);
+          }
+        }, 4000);
+      }
     });
   </script>
+
+  <!-- WhatsApp Floating Chat Widget -->
+  <div id="wa-chat-widget" class="wa-chat-widget">
+    <!-- Chat Window Card -->
+    <div id="wa-chat-window" class="wa-chat-window">
+      <div class="wa-chat-header">
+        <div class="wa-chat-profile">
+          <div class="wa-chat-avatar-container">
+            <img src="assets/charles.png" alt="Charles Goodluck" class="wa-chat-avatar" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22 fill=%22%234831d4%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22/><text x=%2250%25%22 y=%2255%25%22 font-size=%2240%22 fill=%22%23ffffff%22 font-family=%22sans-serif%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>CG</text></svg>'"/>
+            <span class="wa-chat-badge"></span>
+          </div>
+          <div class="wa-chat-info">
+            <span class="wa-chat-name">Charles Goodluck</span>
+            <span class="wa-chat-status">Online • Typically replies instantly</span>
+          </div>
+        </div>
+        <button type="button" id="wa-chat-close" class="wa-chat-close" aria-label="Close chat window">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="wa-chat-body">
+        <div class="wa-chat-message-bubble">
+          <div class="wa-chat-sender">Charles Goodluck</div>
+          <div class="wa-chat-text">Hi there! 👋 I build intelligent, scalable, and user-focused web and mobile applications. How can I help you build your next project today?</div>
+          <div class="wa-chat-time" id="wa-chat-time">11:25 AM</div>
+        </div>
+      </div>
+      
+      <div class="wa-chat-footer">
+        <a href="https://wa.me/2347065552100?text=Hi%20Charles,%20I%20visited%20your%20portfolio%20and%20would%20love%20to%20chat%20about%20a%20project!" target="_blank" rel="noopener noreferrer" class="wa-chat-btn">
+          <svg class="wa-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.012 2.25c-5.378 0-9.75 4.372-9.75 9.75 0 1.72.447 3.332 1.233 4.733l-1.31 4.793 4.908-1.287A9.704 9.704 0 0012.012 21.75c5.378 0 9.75-4.372 9.75-9.75s-4.372-9.75-9.75-9.75zm5.728 13.916c-.244.686-1.22 1.26-1.688 1.344-.457.081-.925.138-2.909-.682-2.535-1.047-4.148-3.64-4.275-3.809-.126-.168-.934-1.246-.934-2.378 0-1.13.589-1.687.833-1.942.245-.254.536-.319.715-.319.178 0 .356.002.51.01.162.008.38-.063.595.454.223.535.76 1.854.826 1.986.066.132.11.286.022.463-.088.177-.133.287-.265.441-.132.155-.277.346-.397.464-.132.13-.272.272-.117.538.155.265.688 1.137 1.474 1.837.994.887 1.83 1.162 2.095 1.294.266.133.42.11.575-.067.155-.176.663-.773.84-1.037.177-.265.354-.22.597-.132.244.088 1.547.73 1.812.862.265.133.442.2.508.31.067.11.067.64-.176 1.326z"/>
+          </svg>
+          Start Chat
+        </a>
+      </div>
+    </div>
+
+    <!-- Launcher Floating Button -->
+    <button type="button" id="wa-chat-launcher" class="wa-chat-launcher" aria-label="Open WhatsApp chat" aria-expanded="false" aria-controls="wa-chat-window">
+      <div class="wa-launcher-badge">1</div>
+      <!-- WhatsApp Logo SVG -->
+      <svg class="wa-launcher-svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.012 2.25c-5.378 0-9.75 4.372-9.75 9.75 0 1.72.447 3.332 1.233 4.733l-1.31 4.793 4.908-1.287A9.704 9.704 0 0012.012 21.75c5.378 0 9.75-4.372 9.75-9.75s-4.372-9.75-9.75-9.75zm5.728 13.916c-.244.686-1.22 1.26-1.688 1.344-.457.081-.925.138-2.909-.682-2.535-1.047-4.148-3.64-4.275-3.809-.126-.168-.934-1.246-.934-2.378 0-1.13.589-1.687.833-1.942.245-.254.536-.319.715-.319.178 0 .356.002.51.01.162.008.38-.063.595.454.223.535.76 1.854.826 1.986.066.132.11.286.022.463-.088.177-.133.287-.265.441-.132.155-.277.346-.397.464-.132.13-.272.272-.117.538.155.265.688 1.137 1.474 1.837.994.887 1.83 1.162 2.095 1.294.266.133.42.11.575-.067.155-.176.663-.773.84-1.037.177-.265.354-.22.597-.132.244.088 1.547.73 1.812.862.265.133.442.2.508.31.067.11.067.64-.176 1.326z"/>
+      </svg>
+      <!-- Close Icon (when active) -->
+      <svg class="wa-launcher-close-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
 </body>
 
 </html>
